@@ -33,7 +33,7 @@ Key Features:
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/your-username/sentiment-analysis-imdb.git
+   git clone https://github.com/hamza-tahir55/sentiment-analysis-imdb.git
    cd sentiment-analysis-imdb
    ```
 
