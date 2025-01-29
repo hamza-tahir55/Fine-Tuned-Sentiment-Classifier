@@ -64,8 +64,8 @@ python predict.py --text "This movie was fantastic!"
 
 ## Model Performance
 The fine-tuned model achieves the following performance on the IMDB test set:
-- **Accuracy**: ~92%
-- **F1 Score**: ~92%
+- **Accuracy**: ~84.65%
+- **F1 Score**: ~84.84%
 
 ---
 
@@ -111,25 +111,3 @@ scikit-learn==1.2.2
 numpy==1.23.5
 ```
 
----
-
-### **Example `.gitignore`**
-Here’s an example `.gitignore file to exclude unnecessary files:
-```
-# Ignore Python cache and virtual environments
-__pycache__/
-venv/
-env/
-
-# Ignore large datasets and model checkpoints
-data/
-*.pt
-*.bin
-
-# Ignore Jupyter notebook checkpoints
-.ipynb_checkpoints/
-```
-
----
-
-This structure and README will make your repository user-friendly and easy to understand. Let me know if you need further assistance!
