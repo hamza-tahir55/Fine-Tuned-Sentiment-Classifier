@@ -1,8 +1,4 @@
-Here’s an example of a **description** and a **README.md** file for your GitHub repository. This assumes you’ve fine-tuned a DistilBERT model for sentiment analysis on the IMDB dataset and want to share it on GitHub.
 
----
-
-### **Repository Description**
 **Title**: Fine-Tuned DistilBERT for Sentiment Analysis on IMDB Dataset  
 **Description**: This repository contains a fine-tuned DistilBERT model for sentiment analysis on the IMDB movie review dataset. The model is trained to classify reviews as positive or negative. It includes the training script, inference script, and all necessary files to reproduce or use the model.
 
