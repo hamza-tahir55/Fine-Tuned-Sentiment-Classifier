@@ -6,8 +6,8 @@ import torch
 @st.cache_resource
 def load_model_and_tokenizer():
     print("Loading model and tokenizer...")  # Debug statement
-    model = AutoModelForSequenceClassification.from_pretrained("/Users/hamzatahir/Documents/Stream/models/IMDB_fine_tuned_model")
-    tokenizer = AutoTokenizer.from_pretrained("/Users/hamzatahir/Documents/Stream/models/IMDB_fine_tuned_model_tokenizer")
+    model = AutoModelForSequenceClassification.from_pretrained("hamza-tahir55/IMDB_fine_tuned_model")
+    tokenizer = AutoTokenizer.from_pretrained("hamza-tahir55/IMDB_fine_tuned_model")
     print("Model and tokenizer loaded.")  # Debug statement
     return model, tokenizer
 
