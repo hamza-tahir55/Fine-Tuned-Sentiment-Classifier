@@ -4,16 +4,17 @@ import torch
 
 # Load the model and tokenizer
 @st.cache_resource
+model, tokenizer = load_model_and_tokenizer()
+
+# Load model and tokenizer
+@st.cache_resource
 def load_model_and_tokenizer():
-    try:
-        st.write("Loading model and tokenizer...")  # Debugging in Streamlit
-        model = AutoModelForSequenceClassification.from_pretrained("hamza-tahir55/IMDB_fine_tuned_model")
-        tokenizer = AutoTokenizer.from_pretrained("hamza-tahir55/IMDB_fine_tuned_model")
-        st.write("Model and tokenizer loaded.")  # Debugging in Streamlit
-        return model, tokenizer
-    except Exception as e:
-        st.error(f"Error loading model and tokenizer: {str(e)}")  # Error handling
-        return None, None
+    print("Loading model and tokenizer...")  # Debug statement
+    model = AutoModelForSequenceClassification.from_pretrained("hamza-tahir55/IMDB_fine_tuned_model")
+    tokenizer = AutoTokenizer.from_pretrained("hamza-tahir55/IMDB_fine_tuned_model")
+    print("Model and tokenizer loaded.")  # Debug statement
+    return model, tokenizer
+
 
 model, tokenizer = load_model_and_tokenizer()
 
