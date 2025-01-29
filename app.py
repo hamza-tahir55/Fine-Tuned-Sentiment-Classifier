@@ -5,33 +5,40 @@ import torch
 # Load the model and tokenizer
 @st.cache_resource
 def load_model_and_tokenizer():
-    print("Loading model and tokenizer...")  # Debug statement
-    model = AutoModelForSequenceClassification.from_pretrained("hamza-tahir55/IMDB_fine_tuned_model")
-    tokenizer = AutoTokenizer.from_pretrained("hamza-tahir55/IMDB_fine_tuned_model")
-    print("Model and tokenizer loaded.")  # Debug statement
-    return model, tokenizer
+    try:
+        st.write("Loading model and tokenizer...")  # Debugging in Streamlit
+        model = AutoModelForSequenceClassification.from_pretrained("hamza-tahir55/IMDB_fine_tuned_model")
+        tokenizer = AutoTokenizer.from_pretrained("hamza-tahir55/IMDB_fine_tuned_model")
+        st.write("Model and tokenizer loaded.")  # Debugging in Streamlit
+        return model, tokenizer
+    except Exception as e:
+        st.error(f"Error loading model and tokenizer: {str(e)}")  # Error handling
+        return None, None
 
 model, tokenizer = load_model_and_tokenizer()
 
-st.title("IMDB Sentiment Analysis App")
+if model and tokenizer:
+    st.title("IMDB Sentiment Analysis App")
 
-# User input
-user_input = st.text_area("Enter a movie review:")
+    # User input
+    user_input = st.text_area("Enter a movie review:")
 
-if st.button("Analyze Sentiment"):
-    if user_input.strip():
-        # Tokenize the input
-        inputs = tokenizer(user_input, return_tensors="pt", truncation=True, padding=True, max_length=512)
+    if st.button("Analyze Sentiment"):
+        if user_input.strip():
+            # Tokenize the input
+            inputs = tokenizer(user_input, return_tensors="pt", truncation=True, padding=True, max_length=512)
 
-        # Get predictions
-        with torch.no_grad():
-            outputs = model(**inputs)
-            probabilities = torch.softmax(outputs.logits, dim=1)
-        
-        positive_prob = probabilities[0][1].item()
-        negative_prob = 1 - positive_prob  # Negative probability is 1 minus positive
+            # Get predictions
+            with torch.no_grad():
+                outputs = model(**inputs)
+                probabilities = torch.softmax(outputs.logits, dim=1)
+            
+            positive_prob = probabilities[0][1].item()
+            negative_prob = 1 - positive_prob  # Negative probability is 1 minus positive
 
-        st.write(f"Positive Sentiment Probability: {positive_prob:.2%}")
-        st.write(f"Negative Sentiment Probability: {negative_prob:.2%}")
-    else:
-        st.warning("Please enter text to analyze.")
+            st.write(f"Positive Sentiment Probability: {positive_prob:.2%}")
+            st.write(f"Negative Sentiment Probability: {negative_prob:.2%}")
+        else:
+            st.warning("Please enter text to analyze.")
+else:
+    st.warning("Model is not loaded. Please check the logs for errors.")
